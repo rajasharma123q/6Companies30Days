@@ -1,0 +1,25 @@
+	ull getNthUglyNo(int n) {
+	   long dp[n+1];
+       dp[1]=1;
+       int ptr1=1;
+       int ptr2=1;
+       int ptr3=1;
+       for(int i=2;i<=n;i++)
+       {
+           long val1=dp[ptr1]*2;
+           long val2=dp[ptr2]*3;
+           long val3=dp[ptr3]*5;
+           long mini=min(val1,min(val2,val3));
+           dp[i]=mini;
+           //agr same number ko ptr many ptrs thne mtlb ki next ugy number ko dhoondo else 
+           //duplicacy hp jaegi
+           if(mini==val1)
+           ptr1++;
+           if(mini==val2)
+           ptr2++;
+           if(mini==val3)
+           ptr3++;
+       }
+       return dp[n];
+	}
+};
